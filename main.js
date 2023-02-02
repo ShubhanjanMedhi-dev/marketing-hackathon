@@ -61,13 +61,15 @@ if(SpeechRecognition) {
       if(searchFormInput.value == 'manage'){
         searchForm1.style.display = 'block';
       }
-      if(searchFormInput.value == 'acknowledge'){
+      else if(searchFormInput.value == 'acknowledge'){
         acknowledgeIncident();
       }
-      if(searchFormInput.value == 'resolve'){
+      else if(searchFormInput.value == 'resolve'){
         resolveIncident();
       }
-      //getDescription();
+      else{
+        getDescription();
+      }
     }
     else {
       if(transcript.toLowerCase().trim()==="go") {
