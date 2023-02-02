@@ -39,6 +39,32 @@ body {
   cursor: pointer;
   color: #333;
 }
+#search-form1 {
+    width: 30%;
+    margin: 0 auto;
+    position: relative;
+  }
+  #search-form1 input {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+  }
+  #search-form1 button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: 3rem;
+    text-align: center;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: #333;
+  }
 .info {
   margin-top: 0.5rem;
   text-align: center;
