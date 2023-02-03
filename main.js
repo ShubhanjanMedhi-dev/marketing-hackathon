@@ -114,7 +114,7 @@ function getDescription(){
     var raw = JSON.stringify({
         "Name": "Muthali Ganesh",
         "Secret": "pBTzDfGt9QL3Mq5KE2BHpHXNP",
-        "Prompt ID": "1675327731925x936351740311371800",
+        "Prompt ID": "1675407536988x697570478340964400",
         "Input 1": title,
         "n": 1
     });
@@ -128,8 +128,8 @@ function getDescription(){
 
     fetch("https://prompts.riku.ai/webhook/run", requestOptions)
         .then(response => response.text())
-        .then(result => createIncident(result.split('Response: ')[1])
-            //createIncident(result)
+        .then(result => //createIncident(result.split('Resolution: ')[1])
+            createIncident(result)
         )
         .catch(error => console.log('error', error));
 }
@@ -166,7 +166,7 @@ searchFormInput1.onblur = function(){
 
 function acknowledgeIncident(){
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU1MTY1MzMsImp0aSI6IjkyMmQ2MzE3OWM2N2I4NWYwNDQ1OThkZTFmM2FjNjJkY2MxNTU5MWU5OTJkYjYzOTczMDc1NWZjOTQxOTcyNDEiLCJpYXQiOjE2NzUzNDM3MzMsImlzcyI6ImFwaS5zcXVhZGNhc3QuY29tIiwibmJmIjoxNjc1MzQzNzMzLCJpZCI6IjVkMTM1N2YxNmZmMmM2MDAxMGJjMzg1OCIsImZpcnN0X25hbWUiOiJTcXVhZGNhc3QiLCJlbWFpbCI6ImRlbW9Ac3F1YWQuY2FtcCIsInVzZXIiOm51bGwsInNzb19sb2dpbiI6ZmFsc2UsInNzb190b2tlbiI6IiIsIm9yZ2FuaXphdGlvbl9pZCI6IjYwY2IyMDBiYzlkZTRhMDAwOGQyZmM0MSIsIm9yZ2FuaXphdGlvbiI6bnVsbCwicmVmcmVzaF90b2tlbiI6Ijk3YTM0ODhmYmRiYmEzOTY2MzFmYzI1ZjFmMTMzNDU5ZmE4MmVjMmI5ODhkZTI0ODhhNzczYTYzMjgzYTNjODk0NjRlZjQ5M2JiNGI4MTMzNDVjODZhZmJhYTYwNjYwYzVkNDBlZWU0NTNjMjFjMjE2MDBhN2I5Mjc3MzE3NGNkIiwid2ViX3Rva2VuIjpmYWxzZSwiYXBpX3Rva2VuIjp0cnVlfQ.XFOQkvASxjLrqK2bOn5SBwVOLG7z-OyUntxtHUFB5PQ");
+    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU1ODE5NjAsImp0aSI6IjQ1NTMyYTBlNDMxOTVhMjA0OTU1M2RhYzM5N2Y1N2E2NmM2NjQ5MDc1OTFhNzAwOTBmMzY4MzVmZGNjY2RkMmIiLCJpYXQiOjE2NzU0MDkxNjAsImlzcyI6ImFwaS5zcXVhZGNhc3QuY29tIiwibmJmIjoxNjc1NDA5MTYwLCJpZCI6IjVkMTM1N2YxNmZmMmM2MDAxMGJjMzg1OCIsImZpcnN0X25hbWUiOiJTcXVhZGNhc3QiLCJlbWFpbCI6ImRlbW9Ac3F1YWQuY2FtcCIsInVzZXIiOm51bGwsInNzb19sb2dpbiI6ZmFsc2UsInNzb190b2tlbiI6IiIsIm9yZ2FuaXphdGlvbl9pZCI6IjYwY2IyMDBiYzlkZTRhMDAwOGQyZmM0MSIsIm9yZ2FuaXphdGlvbiI6bnVsbCwicmVmcmVzaF90b2tlbiI6Ijk3YTM0ODhmYmRiYmEzOTY2MzFmYzI1ZjFmMTMzNDU5ZmE4MmVjMmI5ODhkZTI0ODhhNzczYTYzMjgzYTNjODk0NjRlZjQ5M2JiNGI4MTMzNDVjODZhZmJhYTYwNjYwYzVkNDBlZWU0NTNjMjFjMjE2MDBhN2I5Mjc3MzE3NGNkIiwid2ViX3Rva2VuIjpmYWxzZSwiYXBpX3Rva2VuIjp0cnVlfQ.EJ_uxdZi57FObstH4gGQzjxlXuTSKb2L8ux9wI3U5vw");
 
     var requestOptions = {
         method: 'POST',
@@ -182,7 +182,7 @@ function acknowledgeIncident(){
 
 function resolveIncident(){
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU1MTY1MzMsImp0aSI6IjkyMmQ2MzE3OWM2N2I4NWYwNDQ1OThkZTFmM2FjNjJkY2MxNTU5MWU5OTJkYjYzOTczMDc1NWZjOTQxOTcyNDEiLCJpYXQiOjE2NzUzNDM3MzMsImlzcyI6ImFwaS5zcXVhZGNhc3QuY29tIiwibmJmIjoxNjc1MzQzNzMzLCJpZCI6IjVkMTM1N2YxNmZmMmM2MDAxMGJjMzg1OCIsImZpcnN0X25hbWUiOiJTcXVhZGNhc3QiLCJlbWFpbCI6ImRlbW9Ac3F1YWQuY2FtcCIsInVzZXIiOm51bGwsInNzb19sb2dpbiI6ZmFsc2UsInNzb190b2tlbiI6IiIsIm9yZ2FuaXphdGlvbl9pZCI6IjYwY2IyMDBiYzlkZTRhMDAwOGQyZmM0MSIsIm9yZ2FuaXphdGlvbiI6bnVsbCwicmVmcmVzaF90b2tlbiI6Ijk3YTM0ODhmYmRiYmEzOTY2MzFmYzI1ZjFmMTMzNDU5ZmE4MmVjMmI5ODhkZTI0ODhhNzczYTYzMjgzYTNjODk0NjRlZjQ5M2JiNGI4MTMzNDVjODZhZmJhYTYwNjYwYzVkNDBlZWU0NTNjMjFjMjE2MDBhN2I5Mjc3MzE3NGNkIiwid2ViX3Rva2VuIjpmYWxzZSwiYXBpX3Rva2VuIjp0cnVlfQ.XFOQkvASxjLrqK2bOn5SBwVOLG7z-OyUntxtHUFB5PQ");
+    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU1ODE5NjAsImp0aSI6IjQ1NTMyYTBlNDMxOTVhMjA0OTU1M2RhYzM5N2Y1N2E2NmM2NjQ5MDc1OTFhNzAwOTBmMzY4MzVmZGNjY2RkMmIiLCJpYXQiOjE2NzU0MDkxNjAsImlzcyI6ImFwaS5zcXVhZGNhc3QuY29tIiwibmJmIjoxNjc1NDA5MTYwLCJpZCI6IjVkMTM1N2YxNmZmMmM2MDAxMGJjMzg1OCIsImZpcnN0X25hbWUiOiJTcXVhZGNhc3QiLCJlbWFpbCI6ImRlbW9Ac3F1YWQuY2FtcCIsInVzZXIiOm51bGwsInNzb19sb2dpbiI6ZmFsc2UsInNzb190b2tlbiI6IiIsIm9yZ2FuaXphdGlvbl9pZCI6IjYwY2IyMDBiYzlkZTRhMDAwOGQyZmM0MSIsIm9yZ2FuaXphdGlvbiI6bnVsbCwicmVmcmVzaF90b2tlbiI6Ijk3YTM0ODhmYmRiYmEzOTY2MzFmYzI1ZjFmMTMzNDU5ZmE4MmVjMmI5ODhkZTI0ODhhNzczYTYzMjgzYTNjODk0NjRlZjQ5M2JiNGI4MTMzNDVjODZhZmJhYTYwNjYwYzVkNDBlZWU0NTNjMjFjMjE2MDBhN2I5Mjc3MzE3NGNkIiwid2ViX3Rva2VuIjpmYWxzZSwiYXBpX3Rva2VuIjp0cnVlfQ.EJ_uxdZi57FObstH4gGQzjxlXuTSKb2L8ux9wI3U5vw");
 
     var requestOptions = {
         method: 'POST',
