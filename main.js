@@ -5,6 +5,7 @@ const searchFormInput1 = searchForm1.querySelector("input"); // <=> document.que
 const info = document.querySelector(".info");
 var title;
 var incidentId;
+var requestId;
 
 // The speech recognition interface lives on the browser’s window object
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
@@ -154,8 +155,40 @@ function createIncident(desc){
 
     fetch("https://api.squadcast.com/v2/incidents/api/f0d1e89ecdd07a6d966c0051b1b96c9f29caaf1c", requestOptions)
         .then(response => response.text())
-        .then(result => console.log(result))
+        .then(result => getIncidentId(result))
         .catch(error => console.log('error', error));
+}
+
+function getIncidentId(res){
+  requestId = JSON.parse(res);
+  requestId = requestId.meta.request_id;
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU1MTY1MzMsImp0aSI6IjkyMmQ2MzE3OWM2N2I4NWYwNDQ1OThkZTFmM2FjNjJkY2MxNTU5MWU5OTJkYjYzOTczMDc1NWZjOTQxOTcyNDEiLCJpYXQiOjE2NzUzNDM3MzMsImlzcyI6ImFwaS5zcXVhZGNhc3QuY29tIiwibmJmIjoxNjc1MzQzNzMzLCJpZCI6IjVkMTM1N2YxNmZmMmM2MDAxMGJjMzg1OCIsImZpcnN0X25hbWUiOiJTcXVhZGNhc3QiLCJlbWFpbCI6ImRlbW9Ac3F1YWQuY2FtcCIsInVzZXIiOm51bGwsInNzb19sb2dpbiI6ZmFsc2UsInNzb190b2tlbiI6IiIsIm9yZ2FuaXphdGlvbl9pZCI6IjYwY2IyMDBiYzlkZTRhMDAwOGQyZmM0MSIsIm9yZ2FuaXphdGlvbiI6bnVsbCwicmVmcmVzaF90b2tlbiI6Ijk3YTM0ODhmYmRiYmEzOTY2MzFmYzI1ZjFmMTMzNDU5ZmE4MmVjMmI5ODhkZTI0ODhhNzczYTYzMjgzYTNjODk0NjRlZjQ5M2JiNGI4MTMzNDVjODZhZmJhYTYwNjYwYzVkNDBlZWU0NTNjMjFjMjE2MDBhN2I5Mjc3MzE3NGNkIiwid2ViX3Rva2VuIjpmYWxzZSwiYXBpX3Rva2VuIjp0cnVlfQ.XFOQkvASxjLrqK2bOn5SBwVOLG7z-OyUntxtHUFB5PQ");
+  myHeaders.append("Content-Type", "text/plain");
+
+  var raw = JSON.stringify({
+    "request_ids": [
+      requestId
+    ]
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("https://api.squadcast.com/v3/requests/status", requestOptions)
+    .then(response => response.text())
+    .then(result => cleanIncidentId(result))
+    .catch(error => console.log('error', error));
+}
+
+function cleanIncidentId(res){
+  incidentId = res.split('"incident_id":"')[1].split('"')[0];
+  //incidentId = requests_status.requestId.incident_id;
+  console.log(incidentId);
 }
 
 searchFormInput1.onblur = function(){
